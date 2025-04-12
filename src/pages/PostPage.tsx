@@ -39,7 +39,8 @@ const PostPage = () => {
       <h1 className="text-3xl md:text-4xl font-medium text-center mb-8">Bolaji Maj's Website</h1>
       
       <div className="mb-10">
-        <div className="flex justify-between items-center mb-6">
+        {/* Navigation buttons positioned outside the border, on either side */}
+        <div className="flex justify-between items-center mb-4">
           <button 
             onClick={() => navigate(-1)} 
             className="flex items-center text-xs text-muted-foreground hover:text-foreground"
