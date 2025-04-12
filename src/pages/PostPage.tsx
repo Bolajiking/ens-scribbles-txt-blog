@@ -1,7 +1,6 @@
 
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import Layout from "../components/Layout";
 import { getPostById } from "../data/posts";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -56,22 +55,31 @@ const PostPage = () => {
           </Link>
         </div>
         
-        <h1 className="text-2xl md:text-3xl font-normal mb-2">{post.title}</h1>
-        <div className="text-xs text-muted-foreground mb-8">{formattedDate}</div>
+        {/* Redesigned article headline section */}
+        <div className="border-b border-border pb-8 mb-10">
+          <div className="relative">
+            <div className="absolute -left-4 h-full w-1 bg-primary rounded-full"></div>
+            <h1 className="text-2xl md:text-3xl font-normal mb-3">{post.title}</h1>
+            <div className="text-xs text-muted-foreground flex items-center gap-2">
+              <span className="inline-block w-3 h-0.5 bg-muted-foreground"></span>
+              <span>{formattedDate}</span>
+            </div>
+          </div>
+        </div>
       </div>
       
-      <div className="prose prose-stone dark:prose-invert max-w-none text-xs tracking-wide leading-relaxed">
+      <div className="prose prose-stone dark:prose-invert max-w-none text-xs tracking-wide leading-relaxed font-light">
         {contentParts.map((part, index) => {
           // Process Markdown-like content
           if (part.startsWith("# ")) {
             const text = part.substring(2);
-            return <h1 key={index} className="text-xl font-normal mt-8 mb-4">{text}</h1>;
+            return <h1 key={index} className="text-xl font-light mt-8 mb-4">{text}</h1>;
           } else if (part.startsWith("## ")) {
             const text = part.substring(3);
-            return <h2 key={index} className="text-lg font-normal mt-6 mb-3">{text}</h2>;
+            return <h2 key={index} className="text-lg font-light mt-6 mb-3">{text}</h2>;
           } else if (part.startsWith("### ")) {
             const text = part.substring(4);
-            return <h3 key={index} className="text-base font-normal mt-5 mb-2">{text}</h3>;
+            return <h3 key={index} className="text-base font-light mt-5 mb-2">{text}</h3>;
           } else {
             // Process paragraphs
             const paragraphs = part.split("\n\n").filter(p => p.trim());
@@ -86,7 +94,7 @@ const PostPage = () => {
                       .map(item => item.substring(2));
                     
                     return (
-                      <ul key={i} className="list-disc pl-5 my-4 text-xs">
+                      <ul key={i} className="list-disc pl-5 my-4 text-xs font-light">
                         {items.map((item, j) => (
                           <li key={j} className="mb-2">{item}</li>
                         ))}
@@ -102,7 +110,7 @@ const PostPage = () => {
                       .map(item => item.replace(/^\d+\.\s/, ''));
                     
                     return (
-                      <ol key={i} className="list-decimal pl-5 my-4 text-xs">
+                      <ol key={i} className="list-decimal pl-5 my-4 text-xs font-light">
                         {items.map((item, j) => (
                           <li key={j} className="mb-2">{item}</li>
                         ))}
@@ -119,7 +127,7 @@ const PostPage = () => {
                   return (
                     <p 
                       key={i} 
-                      className="my-4 leading-relaxed text-xs tracking-wide"
+                      className="my-4 leading-relaxed text-xs tracking-wide font-light"
                       dangerouslySetInnerHTML={{ __html: processedParagraph }}
                     />
                   );
