@@ -15,7 +15,7 @@ const Layout = ({ children }: LayoutProps) => {
         <ThemeToggle />
       </div>
       
-      <h1 className="text-3xl md:text-4xl font-medium text-center mb-8">ENS Blog</h1>
+      <h1 className="text-3xl md:text-4xl font-medium text-center mb-8">Bolaji Maj's Website</h1>
       
       <Separator className="mb-8" />
       
