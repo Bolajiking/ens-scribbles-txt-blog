@@ -5,6 +5,7 @@ import Layout from "../components/Layout";
 import { getPostById } from "../data/posts";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import ThemeToggle from "../components/ThemeToggle";
 
 const PostPage = () => {
   const { id } = useParams<{ id: string }>();
