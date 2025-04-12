@@ -26,10 +26,6 @@ const Layout = ({ children }: LayoutProps) => {
       <main className="pb-12">
         {children}
       </main>
-      
-      <footer className="py-6 text-center text-sm text-muted-foreground">
-        <p>© {new Date().getFullYear()} • Connected to my ENS profile</p>
-      </footer>
     </div>
   );
 };
