@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
-import { Toggle } from "@/components/ui/toggle";
+import { Switch } from "@/components/ui/switch";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
@@ -23,15 +23,15 @@ const ThemeToggle = () => {
   };
 
   return (
-    <div className="flex items-center">
-      <Sun className="h-[1.2rem] w-[1.2rem] mr-1" />
-      <Toggle 
-        pressed={theme === "dark"}
-        onPressedChange={toggleTheme}
+    <div className="flex items-center gap-2 rounded-full bg-secondary/50 p-1 px-2 shadow-sm">
+      <Sun className={`h-4 w-4 transition-opacity ${theme === 'light' ? 'text-primary' : 'text-muted-foreground opacity-70'}`} />
+      <Switch 
+        checked={theme === "dark"}
+        onCheckedChange={toggleTheme}
+        className="data-[state=checked]:bg-primary"
         aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        className="data-[state=on]:bg-primary"
       />
-      <Moon className="h-[1.2rem] w-[1.2rem] ml-1" />
+      <Moon className={`h-4 w-4 transition-opacity ${theme === 'dark' ? 'text-primary' : 'text-muted-foreground opacity-70'}`} />
     </div>
   );
 };
