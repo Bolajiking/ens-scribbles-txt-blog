@@ -52,18 +52,18 @@ const PostPage = () => {
         <div className="text-muted-foreground mb-10">{formattedDate}</div>
       </div>
       
-      <div className="prose prose-stone dark:prose-invert max-w-none">
+      <div className="prose prose-stone dark:prose-invert max-w-none text-sm">
         {contentParts.map((part, index) => {
           // Process Markdown-like content
           if (part.startsWith("# ")) {
             const text = part.substring(2);
-            return <h1 key={index} className="text-3xl font-normal mt-8 mb-4">{text}</h1>;
+            return <h1 key={index} className="text-2xl font-normal mt-8 mb-4">{text}</h1>;
           } else if (part.startsWith("## ")) {
             const text = part.substring(3);
-            return <h2 key={index} className="text-2xl font-normal mt-6 mb-3">{text}</h2>;
+            return <h2 key={index} className="text-xl font-normal mt-6 mb-3">{text}</h2>;
           } else if (part.startsWith("### ")) {
             const text = part.substring(4);
-            return <h3 key={index} className="text-xl font-normal mt-5 mb-2">{text}</h3>;
+            return <h3 key={index} className="text-lg font-normal mt-5 mb-2">{text}</h3>;
           } else {
             // Process paragraphs
             const paragraphs = part.split("\n\n").filter(p => p.trim());
@@ -78,7 +78,7 @@ const PostPage = () => {
                       .map(item => item.substring(2));
                     
                     return (
-                      <ul key={i} className="list-disc pl-5 my-4">
+                      <ul key={i} className="list-disc pl-5 my-3 text-sm">
                         {items.map((item, j) => (
                           <li key={j} className="mb-1">{item}</li>
                         ))}
@@ -94,7 +94,7 @@ const PostPage = () => {
                       .map(item => item.replace(/^\d+\.\s/, ''));
                     
                     return (
-                      <ol key={i} className="list-decimal pl-5 my-4">
+                      <ol key={i} className="list-decimal pl-5 my-3 text-sm">
                         {items.map((item, j) => (
                           <li key={j} className="mb-1">{item}</li>
                         ))}
@@ -111,7 +111,7 @@ const PostPage = () => {
                   return (
                     <p 
                       key={i} 
-                      className="my-4 leading-relaxed text-base"
+                      className="my-3 leading-relaxed text-sm"
                       dangerouslySetInnerHTML={{ __html: processedParagraph }}
                     />
                   );

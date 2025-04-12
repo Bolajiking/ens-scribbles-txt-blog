@@ -24,14 +24,14 @@ const PostCard = ({ post }: PostCardProps) => {
       
       <div className="text-base text-muted-foreground mb-6">{formattedDate}</div>
       
-      <div className="mb-6 text-base leading-relaxed">
+      <div className="mb-6 text-sm leading-relaxed">
         {post.excerpt}
       </div>
       
       <div className="flex">
         <Link 
           to={`/post/${post.id}`} 
-          className="text-primary flex items-center hover:text-primary/80 transition-colors hover:underline"
+          className="text-primary text-sm flex items-center hover:text-primary/80 transition-colors hover:underline"
         >
           Read post <ArrowRight size={16} className="ml-1" />
         </Link>
