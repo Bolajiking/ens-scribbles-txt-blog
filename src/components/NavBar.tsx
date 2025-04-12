@@ -1,19 +1,44 @@
 
 import { Link } from "react-router-dom";
-import ThemeToggle from "./ThemeToggle";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { cn } from "@/lib/utils";
+
+const categories = [
+  { name: "Blockchains", path: "/category/blockchains" },
+  { name: "Cryptography", path: "/category/cryptography" },
+  { name: "Economics", path: "/category/economics" },
+  { name: "Fun", path: "/category/fun" },
+  { name: "General", path: "/category/general" },
+  { name: "Web3", path: "/category/web3" },
+  { name: "Philosophy", path: "/category/philosophy" },
+];
 
 const NavBar = () => {
+  const isMobile = useIsMobile();
+  
   return (
-    <nav className="py-4 border-b border-border mb-8">
-      <div className="container max-w-3xl mx-auto px-4 flex justify-between items-center">
-        <div className="flex items-center space-x-6">
-          <Link to="/" className="text-lg font-serif font-medium">ENS Blog</Link>
-          <div className="hidden sm:flex space-x-6">
-            <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Home</Link>
-            <Link to="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</Link>
-          </div>
-        </div>
-        <ThemeToggle />
+    <nav className="w-full">
+      <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
+        <Link to="/" className={cn(
+          "text-base hover:text-primary transition-colors",
+          "text-primary font-medium" // Active state for home
+        )}>
+          Home
+        </Link>
+        
+        {categories.map((category) => (
+          <Link 
+            key={category.name}
+            to={category.path} 
+            className="text-base text-muted-foreground hover:text-primary transition-colors"
+          >
+            {category.name}
+          </Link>
+        ))}
+        
+        <Link to="/about" className="text-base text-muted-foreground hover:text-primary transition-colors">
+          About
+        </Link>
       </div>
     </nav>
   );
