@@ -1,13 +1,24 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import Layout from "../components/Layout";
+import PostCard from "../components/PostCard";
+import { posts } from "../data/posts";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <Layout>
+      <div className="mb-10">
+        <h1 className="font-serif">ENS Blog</h1>
+        <p className="text-muted-foreground max-w-2xl">
+          A minimalist text-based blog connected to my ENS profile. 
+          Exploring Web3, digital identity, and decentralized technology.
+        </p>
       </div>
-    </div>
+      <div className="space-y-8">
+        {posts.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
+      </div>
+    </Layout>
   );
 };
 
