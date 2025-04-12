@@ -22,24 +22,34 @@ const PostPage = () => {
 
   const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
     year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+    month: "short",
+    day: "2-digit",
+  }).replace(",", "");
 
   // Split the content by Markdown headers to process them
   const contentParts = post.content.split(/(?=^#+\s)/m);
 
   return (
     <Layout>
-      <div className="mb-8">
-        <button 
-          onClick={() => navigate(-1)} 
-          className="flex items-center text-sm text-muted-foreground hover:text-foreground mb-6"
-        >
-          <ArrowLeft className="mr-1 h-4 w-4" /> Back
-        </button>
-        <h1 className="font-serif">{post.title}</h1>
-        <div className="text-muted-foreground mb-6">{formattedDate}</div>
+      <div className="mb-12">
+        <div className="flex justify-between items-center mb-6">
+          <button 
+            onClick={() => navigate(-1)} 
+            className="flex items-center text-sm text-muted-foreground hover:text-foreground"
+          >
+            <ArrowLeft className="mr-1 h-4 w-4" /> Back
+          </button>
+          
+          <Link 
+            to="/"
+            className="text-primary text-sm hover:text-primary/80 transition-colors"
+          >
+            See all posts
+          </Link>
+        </div>
+        
+        <h1 className="text-3xl md:text-4xl font-normal mb-2">{post.title}</h1>
+        <div className="text-muted-foreground mb-10">{formattedDate}</div>
       </div>
       
       <div className="prose prose-stone dark:prose-invert max-w-none">
@@ -47,13 +57,13 @@ const PostPage = () => {
           // Process Markdown-like content
           if (part.startsWith("# ")) {
             const text = part.substring(2);
-            return <h1 key={index} className="text-3xl font-serif mt-8 mb-4">{text}</h1>;
+            return <h1 key={index} className="text-3xl font-normal mt-8 mb-4">{text}</h1>;
           } else if (part.startsWith("## ")) {
             const text = part.substring(3);
-            return <h2 key={index} className="text-2xl font-serif mt-6 mb-3">{text}</h2>;
+            return <h2 key={index} className="text-2xl font-normal mt-6 mb-3">{text}</h2>;
           } else if (part.startsWith("### ")) {
             const text = part.substring(4);
-            return <h3 key={index} className="text-xl font-serif mt-5 mb-2">{text}</h3>;
+            return <h3 key={index} className="text-xl font-normal mt-5 mb-2">{text}</h3>;
           } else {
             // Process paragraphs
             const paragraphs = part.split("\n\n").filter(p => p.trim());
@@ -92,7 +102,19 @@ const PostPage = () => {
                     );
                   }
                   
-                  return <p key={i} className="my-4 leading-relaxed">{paragraph}</p>;
+                  // Handle links in text (basic implementation)
+                  const processedParagraph = paragraph.replace(
+                    /\[([^\]]+)\]\(([^)]+)\)/g, 
+                    '<a href="$2" class="text-primary hover:text-primary/80">$1</a>'
+                  );
+                  
+                  return (
+                    <p 
+                      key={i} 
+                      className="my-4 leading-relaxed text-base"
+                      dangerouslySetInnerHTML={{ __html: processedParagraph }}
+                    />
+                  );
                 })}
               </div>
             );
@@ -102,5 +124,8 @@ const PostPage = () => {
     </Layout>
   );
 };
+
+// Add Link import at the top
+import { Link } from "react-router-dom";
 
 export default PostPage;
