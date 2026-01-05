@@ -7,31 +7,37 @@ const AboutPage = () => {
       <h1 className="font-serif">About</h1>
       <div className="prose prose-stone dark:prose-invert max-w-none">
         <p>
-          Welcome to my minimalist ENS-connected blog. This space is dedicated to exploring 
-          Web3 technologies, digital identity, and the evolving landscape of decentralized systems.
+          Welcome to my little corner of the internet. I'm one of those people who can't help but wonder about everything.
         </p>
         
-        <h2 className="text-2xl font-serif mt-8 mb-4">My ENS Profile</h2>
         <p>
-          This blog is connected to my Ethereum Name Service (ENS) profile, which serves as 
-          my digital identity in the Web3 ecosystem. ENS allows human-readable names to 
-          connect to blockchain addresses, websites, and other digital resources.
+          I'm constantly falling down new rabbit holes, asking too many questions, and finding fascination in the most random places.
         </p>
         
-        <h2 className="text-2xl font-serif mt-8 mb-4">Philosophy</h2>
         <p>
-          I believe in minimalism as both an aesthetic and philosophical approach. By reducing 
-          unnecessary elements, we can focus on what truly matters: ideas, connections, and content.
-        </p>
-        <p>
-          This extends to my views on technology: I advocate for systems that put user control 
-          and privacy first, with interfaces that fade into the background rather than demanding attention.
+          I started this blog because my browser tabs were getting out of control. Honestly, I needed somewhere to put all these thoughts, observations, and half-baked theories that keep bouncing around in my head.
         </p>
         
-        <h2 className="text-2xl font-serif mt-8 mb-4">Contact</h2>
+        <h2 className="text-2xl font-serif mt-8 mb-4">What you'll find here:</h2>
+        
+        <ul className="list-disc pl-5 my-4">
+          <li className="mb-2">
+            <strong>Random Obsessions:</strong> Whatever I'm currently spiraling about. Could be anything.
+          </li>
+          <li className="mb-2">
+            <strong>Things I'm Figuring Out:</strong> Life stuff. Work stuff. The messy in-between stuff.
+          </li>
+          <li className="mb-2">
+            <strong>Recommendations:</strong> Books, podcasts, "weird" tech and gadgets—basically anything I can't shut up about at the moment.
+          </li>
+        </ul>
+        
         <p>
-          The best way to reach me is through my ENS domain, which serves as my unified 
-          identity across the decentralized web.
+          My only real goal? Keep this space real. No perfectly curated aesthetic (though I'll try to make it readable, I promise).
+        </p>
+        
+        <p>
+          Thanks for stopping by. Grab a coffee and poke around—who knows what you'll find.
         </p>
       </div>
     </Layout>
